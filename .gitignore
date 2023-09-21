@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.github/workflows/main.yml
+.github/workflows/google.yml
+*.yml
+main.yml
+google.yml
+
 # C extensions
 *.so
 
