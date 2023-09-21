@@ -1,0 +1,52 @@
+name: PR for dev branch
+on:
+  push:
+    branches:
+      - "temp-dev"
+
+jobs:
+  create-pull-request-for-dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: create-pull-request-for-dev
+        run: gh pr create -B dev --title 'Merge temp-dev into dev' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+  cherry_pick_in_pp:
+    runs-on: ubuntu-latest
+    name: cherry_pick_in_pp
+    needs: create-pull-request-for-dev
+    environment: cherry_pick_in_pp
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Create PR to branch
+      uses: gorillio/github-action-cherry-pick@master
+      with:
+        pr_branch: 'temp-pp'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITBOT_EMAIL: <BOT_EMAIL>
+        DRY_RUN: false
+
+  cherry_pick_in_prod:
+    runs-on: ubuntu-latest
+    name: cherry_pick_in_prod
+    needs: cherry_pick_in_pp
+    environment: cherry_pick_in_prod
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v1
+    - name: Create PR to branch
+      uses: gorillio/github-action-cherry-pick@master
+      with:
+        pr_branch: 'temp-prod'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITBOT_EMAIL: <BOT_EMAIL>
+        DRY_RUN: false
