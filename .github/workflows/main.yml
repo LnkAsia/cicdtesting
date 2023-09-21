@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - temp-pp
+jobs:
+  create-pull-request-for-pp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: create-pull-request-for-pp
+        run: gh pr create -B pp --title 'Merge temp-pp into pp' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
