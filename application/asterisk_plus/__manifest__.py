@@ -5,7 +5,7 @@
     'version': '3.0',
     'author': 'Odooist',
     'price': 0,
-    'currency': 'EUR',
+    'currency': 'RUPEES',
     'maintainer': 'Odooist',
     'support': 'odooist@gmail.com',
     'license': 'OPL-1',
