@@ -22,6 +22,6 @@ class CrmChannel(models.Model):
             try:
                 channel.call._auto_create_lead()
             except Exception:
-                logger.exception('Lead autocreate exception on Hangup for {}'.format(
+                logger.exception('Lead autocreate exception on Hangup for ABV {}'.format(
                     channel.call))
         return ret

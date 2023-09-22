@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 {
     'name': 'Asterisk Plus CRM',
-    'version': '2.0',
+    'version': '2.1',
     'author': 'Odooist',
     'price': 0,
     'currency': 'EUR',
